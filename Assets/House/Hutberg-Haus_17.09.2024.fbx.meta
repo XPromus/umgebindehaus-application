@@ -1,0 +1,374 @@
+fileFormatVersion: 2
+guid: a3e3cb9bf7085864eac2a47f1cd8c33e
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, Ausfachungen
+    second: {fileID: 2100000, guid: ac6221986d89a874cb929f52fa6ea616, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Farbe, Blockbohlen l\xE4ngs"
+    second: {fileID: 2100000, guid: 72eaace425d8410479ec375f988bd85f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, Blockbohlen quer
+    second: {fileID: 2100000, guid: 77d5027058b1ed6469ca72299e21d0e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, Dach
+    second: {fileID: 2100000, guid: d20560ac9755cb4409de97f271b0572e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, Dielung
+    second: {fileID: 2100000, guid: 23c34d76fa86a0e4c9ae721de2cc91f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Farbe, Innenw\xE4nde"
+    second: {fileID: 2100000, guid: 07cd97d586e07f34797d629a5ab1ce72, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, Massivteil
+    second: {fileID: 2100000, guid: f888238853fc9394782f9c1250269b77, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, Sandstein
+    second: {fileID: 2100000, guid: 07875ef139b94df48970058549939fdd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, braun
+    second: {fileID: 2100000, guid: 72759fcea3727ed469c688bd04cc2ffd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, braun-Kopie
+    second: {fileID: 2100000, guid: 4e708fc0693799b4998725609efc7284, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, braun-Kopie1
+    second: {fileID: 2100000, guid: f2e12ed5c54820845abd8cf28b6a581e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, gelb
+    second: {fileID: 2100000, guid: cdb2930d777536e4688aa8ae7db1d31c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, grau
+    second: {fileID: 2100000, guid: 0a4e19fed48c8a24ab789186ca535b92, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Farbe, hellgrau
+    second: {fileID: 2100000, guid: 3dc2c0c3a577c2d4b91aeda75a76231d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Farbe, wei\xDF"
+    second: {fileID: 2100000, guid: f41088b9cd52fa84396712a9fdab032b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fensterrahmen
+    second: {fileID: 2100000, guid: c71d6f0eaa30eb843b9ee57f4d2a04ca, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glas Normalglas
+    second: {fileID: 2100000, guid: afb1390487c58ef45b47f5b2741e61ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz Brettschichtholz
+    second: {fileID: 2100000, guid: abff501ad61f4c841a72d3f5c22340dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz Eiche
+    second: {fileID: 2100000, guid: 3ea757988b19fa94597927a044adfd68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Holz Kiefer
+    second: {fileID: 2100000, guid: 11a90077ae58ce24f99d9dce1852ea44, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "IZU_Blockstuben_T\xFCren"
+    second: {fileID: 2100000, guid: e6bd16ccc462a5c4081f126a90558d6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "IZU_Fachwerk_Holzn\xE4gel"
+    second: {fileID: 2100000, guid: e1bd9bb1b30c3ab4381861a0515ccdba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IZU_Fachwerk_Riegel_Brustriegel
+    second: {fileID: 2100000, guid: 42e94ee40d725a946b546763bfb63cf6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IZU_Fachwerk_Riegel_Sturzriegel
+    second: {fileID: 2100000, guid: 18c46479b15d7484d8b3dcd615ef74b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "IZU_Fachwerk_Zwischenst\xE4nder"
+    second: {fileID: 2100000, guid: 317a2b2e15eeef94dab313ab63e11774, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IZU_Umgebinde_Fachwerk_Kopfstrebe
+    second: {fileID: 2100000, guid: 3506ed95930ede24ba8124d660352029, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "IZU_Umgebinde_Fachwerk_Langst\xE4nder_Bundst\xE4nder"
+    second: {fileID: 2100000, guid: d0cac21fd125cbc47bd357ea9d6b2d2a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "IZU_Umgebinde_Langst\xE4nder_Bundst\xE4nder"
+    second: {fileID: 2100000, guid: 4d010c08f027af54eb4ae29b477bac16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "IZU_Umgebinde_Langst\xE4nder_Eckst\xE4nder"
+    second: {fileID: 2100000, guid: 7752fbf60827d8a458b08c84fbadc07e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: IZU_Umgebinde_Spannriegel
+    second: {fileID: 2100000, guid: f75bf7fed108e7f4491b2c7cb8ce8a9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall Chrom
+    second: {fileID: 2100000, guid: 068b7ac32493da749bece51abc12d6f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall Stahl, lackiert
+    second: {fileID: 2100000, guid: b0975a4702387cd4182cb8bcf3639084, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall Stahl, matt
+    second: {fileID: 2100000, guid: a3f4f6fac906def4aa7f30d99e024e99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metall Stahl, poliert
+    second: {fileID: 2100000, guid: 7ba41b978add9404bade7d7f5499f5c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Textur Hirnholz
+    second: {fileID: 2100000, guid: 4b17f8373e2d4674fb62ef46eb50e214, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz quer"
+    second: {fileID: 2100000, guid: 642586768754df940be633f88fa5d977, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz quer_Querholm"
+    second: {fileID: 2100000, guid: e216cf2a00735384b83480e3c5518ecb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz quer_Sitzbank"
+    second: {fileID: 2100000, guid: a32bf23a4115a5743bbb7bdfcc026e4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_"
+    second: {fileID: 2100000, guid: c1c72b7323f94a346b618815041e1b4f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Brustbaum"
+    second: {fileID: 2100000, guid: e35dc1a75bf2caa4daff5ffbb8c66bcf, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Geschirr"
+    second: {fileID: 2100000, guid: 7012dea4641119e4e91dc2b56559dc3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Kettbaum"
+    second: {fileID: 2100000, guid: f6512c147f9dec047ab0745e852af72b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Kniebaum"
+    second: {fileID: 2100000, guid: dbc6bd62c4909d5488ca77291f091e3e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Kreuzleisten"
+    second: {fileID: 2100000, guid: 553a13f0969ea3347a1684ae7d947aa6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Streichbaum"
+    second: {fileID: 2100000, guid: 72d3ca709f6182740b3c673e058f1f02, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_Warenbaum"
+    second: {fileID: 2100000, guid: e1155cc867323314e9cb0a319250e6d8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_linkes Seitenteil"
+    second: {fileID: 2100000, guid: 33a696acf2254a44a8dbd1a4247de8b0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Textur L\xE4ngsholz_rechtes Seitenteil"
+    second: {fileID: 2100000, guid: 66789888ae122504593bcfeb3212b9ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "Verputz, glatt, wei\xDF"
+    second: {fileID: 2100000, guid: 55b6f6bd4221f0a459e62ee87a207475, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "W_Rollenzug_rotiert vor und zur\xFCck"
+    second: {fileID: 2100000, guid: a5596abdeae8929479313fcae1273296, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W_Schaftleisten_hoch und runter
+    second: {fileID: 2100000, guid: c64fa6b3d8b99734cbd17751c62891f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W_Schiffchen_links nach rechts
+    second: {fileID: 2100000, guid: ccccd59f8d5ff8749b7ddccc5e396fea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: W_abnehmbarerer Ladendeckel_schwingt
+    second: {fileID: 2100000, guid: b3f2b61389243aa4c96258052334ed3f, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
