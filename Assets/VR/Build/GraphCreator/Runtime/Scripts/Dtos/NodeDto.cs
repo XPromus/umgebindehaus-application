@@ -6,17 +6,17 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Dtos
     public struct NodeDto
     {
         public NodeDto(
-            Node previousNode, 
+            VrBuildGraphNode previousVrBuildGraphNode, 
             GameObject targetObject, 
-            Node nextNode
+            VrBuildGraphNode nextVrBuildGraphNode
         ) {
-            PreviousNode = previousNode;
+            PreviousVrBuildGraphNode = previousVrBuildGraphNode;
             TargetObject = targetObject;
-            NextNode = nextNode;
+            NextVrBuildGraphNode = nextVrBuildGraphNode;
         }
 
         public GameObject TargetObject { get; }
-        public Node PreviousNode { get; }
-        public Node NextNode { get; }
+        public VrBuildGraphNode PreviousVrBuildGraphNode { get; }
+        public VrBuildGraphNode NextVrBuildGraphNode { get; }
     }
 }

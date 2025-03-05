@@ -1,4 +1,4 @@
-GraphCreatorView {
+VrBuildGraphEditorView {
     flex-grow: 1;
 }
 

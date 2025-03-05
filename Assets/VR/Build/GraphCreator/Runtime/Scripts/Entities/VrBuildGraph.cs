@@ -3,18 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using VR.Build.GraphCreator.Runtime.Scripts.Dtos;
-using VR.Build.GraphCreator.Runtime.Scripts.Entities;
 using VR.Build.GraphCreator.Runtime.Scripts.Exceptions;
 
-namespace VR.Build.GraphCreator
+namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
 {
-    public abstract class Graph
+    [CreateAssetMenu(menuName = "VR Builder/New Graph")]
+    public class VrBuildGraph : ScriptableObject
     {
-        private List<Node> _nodes;
-        private Node _rootNode;
+        public List<VrBuildGraphNode> Nodes { get; private set; }
+        private VrBuildGraphNode rootVrBuildGraphNode;
         
         private string _name;
 
+        private VrBuildGraph()
+        {
+            Nodes = new List<VrBuildGraphNode>();
+        }
+        
+        /*
         public Material DefaultGhostObjectMaterial { get; set; }
         
         public void CreateGraph()
@@ -27,9 +33,9 @@ namespace VR.Build.GraphCreator
 
         public void AddNode()
         {
-            _nodes.Add(new Node
+            _nodes.Add(new VrBuildGraphNode
             {
-                TargetGraph = this
+                TargetVrBuildGraph = this
             });
         }
 
@@ -37,11 +43,11 @@ namespace VR.Build.GraphCreator
         {
             var nodeToEdit = FindNodeInList(_nodes, targetNode);
             nodeToEdit.TargetObject = nodeDto.TargetObject;
-            nodeToEdit.PreviousNode = nodeToEdit.PreviousNode;
-            nodeToEdit.NextNode = nodeToEdit.NextNode;
+            nodeToEdit.PreviousVrBuildGraphNode = nodeToEdit.PreviousVrBuildGraphNode;
+            nodeToEdit.NextVrBuildGraphNode = nodeToEdit.NextVrBuildGraphNode;
         }
 
-        private static Node FindNodeInList(List<Node> nodes, Guid id)
+        private static VrBuildGraphNode FindNodeInList(List<VrBuildGraphNode> nodes, Guid id)
         {
             foreach (var node in nodes.Where(node => node.ID.Equals(id)))
             {
@@ -50,6 +56,7 @@ namespace VR.Build.GraphCreator
 
             throw new NodeNotFoundException($"Node with ID {id} could not be found!");
         }
+        */
         
     }
 }
