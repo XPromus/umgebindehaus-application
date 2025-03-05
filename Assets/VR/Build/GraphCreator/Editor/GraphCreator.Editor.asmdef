@@ -1,0 +1,4 @@
+{
+  "name": "GraphCreator.Editor",
+  "references":[ "GraphCreator" ]
+}
