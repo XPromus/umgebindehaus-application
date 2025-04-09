@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -45,6 +46,52 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
             this.AddManipulator(new ClickSelector());
+            
+            DrawNode();
+            graphViewChanged += OnGraphViewChangedEvent;
+        }
+
+        private GraphViewChange OnGraphViewChangedEvent(GraphViewChange graphViewChange)
+        {
+            if (graphViewChange.movedElements != null)
+            {
+                Undo.RecordObject(serializedObject.targetObject, "Moved Elements");
+                foreach (var movedNode in graphViewChange.movedElements.OfType<VrBuildGraphEditorNode>())
+                {
+                    movedNode.SavePosition();
+                }
+            }
+            
+            if (graphViewChange.elementsToRemove != null)
+            {
+                Undo.RecordObject(serializedObject.targetObject, "Removed From Graph");
+                var changedNodes = graphViewChange.elementsToRemove.OfType<VrBuildGraphEditorNode>().ToList();
+                if (changedNodes.Count > 0)
+                {
+                    for (var i = changedNodes.Count - 1; i >= 0; i--)
+                    {
+                        RemoveNode(changedNodes[i]);
+                    }
+                }
+            }
+
+            return graphViewChange;
+        }
+
+        private void RemoveNode(VrBuildGraphEditorNode node)
+        {
+            vrBuildGraph.Nodes.Remove(node.VrBuildGraphNode);
+            NodeDictionary.Remove(node.VrBuildGraphNode.ID);
+            GraphCreatorNodes.Remove(node);
+            serializedObject.Update();
+        }
+
+        private void DrawNode()
+        {
+            foreach (var node in vrBuildGraph.Nodes)
+            {
+                AddNodeToGraph(node);
+            }
         }
 
         private void ShowSearchWindow(NodeCreationContext obj)
@@ -64,10 +111,10 @@ namespace VR.Build.GraphCreator.Editor.Scripts
         private void AddNodeToGraph(VrBuildGraphNode node)
         {
             node.TypeName = node.GetType().AssemblyQualifiedName;
-            var editorNode = new VrBuildGraphEditorNode();
+            var editorNode = new VrBuildGraphEditorNode(node);
             editorNode.SetPosition(node.Position);
             GraphCreatorNodes.Add(editorNode);
-            NodeDictionary.Add(node.ID.ToString(), editorNode);
+            NodeDictionary.Add(node.ID, editorNode);
             
             AddElement(editorNode);
         }

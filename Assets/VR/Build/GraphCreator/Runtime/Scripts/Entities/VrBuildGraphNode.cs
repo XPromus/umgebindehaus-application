@@ -14,7 +14,7 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         public string TypeName { get; set; }
         public Rect Position { get; set; }
         
-        public Guid ID => Guid.Parse(mGuid);
+        public string ID => mGuid;
         public GameObject TargetObject => mTargetObject;
 
         public VrBuildGraphNode()

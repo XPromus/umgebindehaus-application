@@ -22770,12 +22770,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2069199436}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &2027049057 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a3e3cb9bf7085864eac2a47f1cd8c33e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2069199436}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2040229783
 GameObject:
   m_ObjectHideFlags: 0
@@ -50000,7 +49994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef39a800247ef845966118e4c83c103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list: {fileID: 2027049057}
+  list: []
 --- !u!65 &5919501983552870920
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50895,7 +50889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ef39a800247ef845966118e4c83c103, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  list: {fileID: 0}
+  list: []
 --- !u!1 &7371599469178044934
 GameObject:
   m_ObjectHideFlags: 0
@@ -52189,5 +52183,5 @@ SceneRoots:
   - {fileID: 40717816}
   - {fileID: 1966032973}
   - {fileID: 1651433283}
-  - {fileID: 387647256}
   - {fileID: 765325461}
+  - {fileID: 387647256}
