@@ -3,7 +3,7 @@ using VR.Build.GraphCreator.Runtime.Scripts.Entities;
 
 namespace VR.Build.GraphCreator.Runtime.Scripts.Types
 {
-    [NodeInfo("Start Node", "Process/Start")]
+    [NodeInfo("Start Node", "Process/Start", false, true)]
     public class StartNode : VrBuildGraphNode
     {
         

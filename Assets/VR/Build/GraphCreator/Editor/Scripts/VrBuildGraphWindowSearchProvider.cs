@@ -42,8 +42,9 @@ namespace VR.Build.GraphCreator.Editor.Scripts
                 foreach (var type in assembly.GetTypes())
                 {
                     var attribute = type.GetCustomAttribute(typeof(NodeInfoAttribute));
+                    
                     if (attribute == null) continue;
-                    var att = (NodeInfoAttribute)attribute;
+                    var att = (NodeInfoAttribute) attribute;
                     var node = Activator.CreateInstance(type);
                     if (string.IsNullOrEmpty(att.MenuItem))
                     {

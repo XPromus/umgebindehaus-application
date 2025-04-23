@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 using VR.Build.GraphCreator.Runtime.Scripts.Dtos;
 using VR.Build.GraphCreator.Runtime.Scripts.Exceptions;
 
@@ -10,14 +11,16 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
     [CreateAssetMenu(menuName = "VR Builder/New Graph")]
     public class VrBuildGraph : ScriptableObject
     {
-        public List<VrBuildGraphNode> Nodes { get; private set; }
+        [SerializeReference] 
+        public List<VrBuildGraphNode> nodes;
+        
         private VrBuildGraphNode rootVrBuildGraphNode;
         
         private string _name;
 
         private VrBuildGraph()
         {
-            Nodes = new List<VrBuildGraphNode>();
+            nodes = new List<VrBuildGraphNode>();
         }
         
         /*

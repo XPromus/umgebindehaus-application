@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -51,6 +52,25 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             graphViewChanged += OnGraphViewChangedEvent;
         }
 
+        public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+        {
+            var allPorts = new List<Port>();
+            foreach (var node in GraphCreatorNodes)
+            {
+                allPorts.AddRange(node.Ports);
+            }
+
+            return 
+            (
+                from port in allPorts 
+                where port != startPort 
+                where port.node != startPort.node 
+                where port.direction != startPort.direction 
+                where port.portType == startPort.portType 
+                select port
+            ).ToList();
+        }
+        
         private GraphViewChange OnGraphViewChangedEvent(GraphViewChange graphViewChange)
         {
             if (graphViewChange.movedElements != null)
@@ -80,7 +100,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
 
         private void RemoveNode(VrBuildGraphEditorNode node)
         {
-            vrBuildGraph.Nodes.Remove(node.VrBuildGraphNode);
+            vrBuildGraph.nodes.Remove(node.VrBuildGraphNode);
             NodeDictionary.Remove(node.VrBuildGraphNode.ID);
             GraphCreatorNodes.Remove(node);
             serializedObject.Update();
@@ -88,7 +108,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
 
         private void DrawNode()
         {
-            foreach (var node in vrBuildGraph.Nodes)
+            foreach (var node in vrBuildGraph.nodes)
             {
                 AddNodeToGraph(node);
             }
@@ -103,7 +123,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
         public void Add(VrBuildGraphNode node)
         {
             Undo.RecordObject(serializedObject.targetObject, "Added Node");
-            vrBuildGraph.Nodes.Add(node);
+            vrBuildGraph.nodes.Add(node);
             serializedObject.Update();
             AddNodeToGraph(node);
         }

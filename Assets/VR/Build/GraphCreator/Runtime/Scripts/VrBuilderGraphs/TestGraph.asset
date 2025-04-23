@@ -12,3 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137e768deae94bffa25afad3e16fc930, type: 3}
   m_Name: TestGraph
   m_EditorClassIdentifier: 
+  nodes:
+  - rid: 2349881956868292678
+  - rid: 2349881956868292679
+  references:
+    version: 2
+    RefIds:
+    - rid: 2349881956868292678
+      type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
+        asm: GraphCreator}
+      data:
+        mGuid: 3a4c31df-2623-463e-a840-6011e4c23a41
+        mTargetObject: {fileID: 0}
+    - rid: 2349881956868292679
+      type: {class: StartNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types, asm: GraphCreator}
+      data:
+        mGuid: 977e7933-6f03-46a3-8a47-8a3733740917
+        mTargetObject: {fileID: 0}
