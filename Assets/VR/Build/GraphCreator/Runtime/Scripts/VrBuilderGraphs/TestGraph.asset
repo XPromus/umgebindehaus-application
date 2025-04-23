@@ -13,19 +13,27 @@ MonoBehaviour:
   m_Name: TestGraph
   m_EditorClassIdentifier: 
   nodes:
-  - rid: 2349881956868292678
-  - rid: 2349881956868292679
+  - rid: 2349882280621113415
+  - rid: 2349882280621113416
+  connections:
+  - inputPort:
+      nodeId: 982c9405-7245-41bd-97a3-f94061fcba54
+      portIndex: 0
+    outputPort:
+      nodeId: d8ef1950-ac91-4a6c-a128-94997056cb42
+      portIndex: 1
   references:
     version: 2
     RefIds:
-    - rid: 2349881956868292678
+    - rid: 2349882280621113415
       type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
         asm: GraphCreator}
       data:
-        mGuid: 3a4c31df-2623-463e-a840-6011e4c23a41
+        mGuid: d8ef1950-ac91-4a6c-a128-94997056cb42
         mTargetObject: {fileID: 0}
-    - rid: 2349881956868292679
-      type: {class: StartNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types, asm: GraphCreator}
+    - rid: 2349882280621113416
+      type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
+        asm: GraphCreator}
       data:
-        mGuid: 977e7933-6f03-46a3-8a47-8a3733740917
+        mGuid: 982c9405-7245-41bd-97a3-f94061fcba54
         mTargetObject: {fileID: 0}

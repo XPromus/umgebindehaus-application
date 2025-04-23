@@ -18,6 +18,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
         public VrBuildGraphEditorWindow Window { get; private set; }
         public List<VrBuildGraphEditorNode> GraphCreatorNodes { get; set; }
         public Dictionary<string, VrBuildGraphEditorNode> NodeDictionary { get; set; }
+        public Dictionary<Edge, VrBuildGraphConnection> ConnectionDictionary { get; set; }
         
         public VrBuildGraphEditorView(SerializedObject serializedObject, VrBuildGraphEditorWindow window)
         {
@@ -26,6 +27,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             Window = window;
             GraphCreatorNodes = new List<VrBuildGraphEditorNode>();
             NodeDictionary = new Dictionary<string, VrBuildGraphEditorNode>();
+            ConnectionDictionary = new Dictionary<Edge, VrBuildGraphConnection>();
             windowSearchProvider = ScriptableObject.CreateInstance<VrBuildGraphWindowSearchProvider>();
             windowSearchProvider.Graph = this;
             nodeCreationRequest = ShowSearchWindow;
@@ -49,7 +51,38 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             this.AddManipulator(new ClickSelector());
             
             DrawNode();
+            DrawConnections();
+            
             graphViewChanged += OnGraphViewChangedEvent;
+        }
+
+        private void DrawConnections()
+        {
+            if (vrBuildGraph.connections == null) return;
+            foreach (var connection in vrBuildGraph.connections)
+            {
+                DrawConnection(connection);
+            }
+        }
+
+        private void DrawConnection(VrBuildGraphConnection connection)
+        {
+            var inputNode = GetNode(connection.inputPort.nodeId);
+            var outputNode = GetNode(connection.outputPort.nodeId);
+            if (inputNode == null || outputNode == null) { return; }
+
+            var inputPort = inputNode.Ports[connection.inputPort.portIndex];
+            var outputPort = outputNode.Ports[connection.outputPort.portIndex];
+            var edge = inputPort.ConnectTo(outputPort);
+            
+            ConnectionDictionary.Add(edge, connection);
+            AddElement(edge);
+        }
+
+        private VrBuildGraphEditorNode GetNode(string nodeId)
+        {
+            NodeDictionary.TryGetValue(nodeId, out var targetNode);
+            return targetNode;
         }
 
         public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
@@ -93,11 +126,44 @@ namespace VR.Build.GraphCreator.Editor.Scripts
                         RemoveNode(changedNodes[i]);
                     }
                 }
+
+                foreach (var edge in graphViewChange.elementsToRemove.OfType<Edge>())
+                {
+                    RemoveConnection(edge);
+                }
+            }
+
+            if (graphViewChange.edgesToCreate != null)
+            {
+                Undo.RecordObject(serializedObject.targetObject, "Added Connections");
+                foreach (var edge in graphViewChange.edgesToCreate)
+                {
+                    CreateEdge(edge);
+                }
             }
 
             return graphViewChange;
         }
 
+        private void CreateEdge(Edge edge)
+        {
+            var inputNode = (VrBuildGraphEditorNode) edge.input.node;
+            var inputIndex = inputNode.Ports.IndexOf(edge.input);
+            
+            var outputNode = (VrBuildGraphEditorNode) edge.output.node;
+            var outputIndex = outputNode.Ports.IndexOf(edge.output);
+
+            var connection = new VrBuildGraphConnection(inputNode.VrBuildGraphNode.ID, inputIndex, outputNode.VrBuildGraphNode.ID, outputIndex);
+            vrBuildGraph.connections.Add(connection);
+        }
+
+        private void RemoveConnection(Edge edge)
+        {
+            if (!ConnectionDictionary.TryGetValue(edge, out var connection)) return;
+            vrBuildGraph.connections.Remove(connection);
+            ConnectionDictionary.Remove(edge);
+        }
+        
         private void RemoveNode(VrBuildGraphEditorNode node)
         {
             vrBuildGraph.nodes.Remove(node.VrBuildGraphNode);
