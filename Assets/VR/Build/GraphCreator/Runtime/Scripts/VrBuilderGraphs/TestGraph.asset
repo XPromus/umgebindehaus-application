@@ -13,27 +13,45 @@ MonoBehaviour:
   m_Name: TestGraph
   m_EditorClassIdentifier: 
   nodes:
-  - rid: 2349882280621113415
-  - rid: 2349882280621113416
+  - rid: 2349882305478656000
+  - rid: 2349882305478656001
+  - rid: 2349882305478656002
   connections:
   - inputPort:
-      nodeId: 982c9405-7245-41bd-97a3-f94061fcba54
+      nodeId: d8ef1950-ac91-4a6c-a128-94997056cb42
       portIndex: 0
     outputPort:
-      nodeId: d8ef1950-ac91-4a6c-a128-94997056cb42
+      nodeId: ccab6a74-b157-441c-903f-4dea6ce1bbc4
+      portIndex: 0
+  - inputPort:
+      nodeId: 430042a5-4a37-4ee8-8df6-237cadefd4be
+      portIndex: 0
+    outputPort:
+      nodeId: ccab6a74-b157-441c-903f-4dea6ce1bbc4
+      portIndex: 0
+  - inputPort:
+      nodeId: 6e484025-add8-4065-9c80-0b4c823495a9
+      portIndex: 0
+    outputPort:
+      nodeId: 430042a5-4a37-4ee8-8df6-237cadefd4be
       portIndex: 1
   references:
     version: 2
     RefIds:
-    - rid: 2349882280621113415
-      type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
-        asm: GraphCreator}
+    - rid: 2349882305478656000
+      type: {class: StartNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types, asm: GraphCreator}
       data:
-        mGuid: d8ef1950-ac91-4a6c-a128-94997056cb42
+        mGuid: ccab6a74-b157-441c-903f-4dea6ce1bbc4
         mTargetObject: {fileID: 0}
-    - rid: 2349882280621113416
+    - rid: 2349882305478656001
       type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
         asm: GraphCreator}
       data:
-        mGuid: 982c9405-7245-41bd-97a3-f94061fcba54
+        mGuid: 430042a5-4a37-4ee8-8df6-237cadefd4be
+        mTargetObject: {fileID: 0}
+    - rid: 2349882305478656002
+      type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
+        asm: GraphCreator}
+      data:
+        mGuid: 6e484025-add8-4065-9c80-0b4c823495a9
         mTargetObject: {fileID: 0}
