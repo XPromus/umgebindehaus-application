@@ -27,24 +27,12 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         {
             Position = rect;
         }
-        
-        /*
-        public VrBuildGraph TargetVrBuildGraph { get; set; }
-        
-        public bool Satisfied { get; set; }
-        
-        public VrBuildGraphNode PreviousVrBuildGraphNode { get; set; }
-        public VrBuildGraphNode NextVrBuildGraphNode { get; set; }
-        public BuildComponent BuildComponent { get; private set; }
-        
-        public BuildComponent InitializeBuildComponent()
+
+        public virtual string OnProcess(VrBuildGraph currentGraph)
         {
-            var newBuildComponent = TargetObject.AddComponent<BuildComponent>();
-            newBuildComponent.Initialize(TargetVrBuildGraph.DefaultGhostObjectMaterial);
-            BuildComponent = newBuildComponent;
-            return newBuildComponent;
+            var nextNodeInFlow = currentGraph.GetNodeFromOutput(mGuid, 0);
+            return nextNodeInFlow != null ? nextNodeInFlow.ID : string.Empty;
         }
-        */
         
     }
 }

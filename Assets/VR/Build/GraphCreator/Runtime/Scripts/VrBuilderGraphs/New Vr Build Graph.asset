@@ -12,3 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 137e768deae94bffa25afad3e16fc930, type: 3}
   m_Name: New Vr Build Graph
   m_EditorClassIdentifier: 
+  nodes:
+  - rid: 3536060374229188679
+  - rid: 3536060374229188680
+  connections:
+  - inputPort:
+      nodeId: a8e27e65-43a8-4784-8a8f-860ce98c0dc6
+      portIndex: 1
+    outputPort:
+      nodeId: 77db9b53-f7a4-4e01-bb36-50d65f68f7c6
+      portIndex: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 3536060374229188679
+      type: {class: StartNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types, asm: GraphCreator}
+      data:
+        mGuid: 77db9b53-f7a4-4e01-bb36-50d65f68f7c6
+        mTargetObject: {fileID: 0}
+    - rid: 3536060374229188680
+      type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
+        asm: GraphCreator}
+      data:
+        mGuid: a8e27e65-43a8-4784-8a8f-860ce98c0dc6
+        mTargetObject: {fileID: 0}
+        debugMessage: Test

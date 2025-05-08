@@ -3,6 +3,7 @@ using System.Linq;
 using NUnit.Framework;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 using VR.Build.GraphCreator.Runtime.Scripts.Entities;
@@ -178,6 +179,8 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             {
                 AddNodeToGraph(node);
             }
+            
+            Bind();
         }
 
         private void ShowSearchWindow(NodeCreationContext obj)
@@ -197,12 +200,18 @@ namespace VR.Build.GraphCreator.Editor.Scripts
         private void AddNodeToGraph(VrBuildGraphNode node)
         {
             node.TypeName = node.GetType().AssemblyQualifiedName;
-            var editorNode = new VrBuildGraphEditorNode(node);
+            var editorNode = new VrBuildGraphEditorNode(node, serializedObject);
             editorNode.SetPosition(node.Position);
             GraphCreatorNodes.Add(editorNode);
             NodeDictionary.Add(node.ID, editorNode);
             
             AddElement(editorNode);
+        }
+
+        private void Bind()
+        {
+            serializedObject.Update();
+            this.Bind(serializedObject);
         }
     }
 }
