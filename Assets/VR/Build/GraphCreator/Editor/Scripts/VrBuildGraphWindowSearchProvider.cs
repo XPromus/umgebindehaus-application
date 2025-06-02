@@ -108,8 +108,8 @@ namespace VR.Build.GraphCreator.Editor.Scripts
         {
             var windowMousePosition = Graph.ChangeCoordinatesTo(Graph, context.screenMousePosition - Graph.Window.position.position);
             var graphMousePosition = Graph.contentViewContainer.WorldToLocal(windowMousePosition);
-            var element = (SearchContextElement)SearchTreeEntry.userData;
-            var node = (VrBuildGraphNode)element.Target;
+            var element = (SearchContextElement) SearchTreeEntry.userData;
+            var node = (VrBuildGraphNode) element.Target;
             node.SetPosition(new Rect(graphMousePosition, new Vector2()));
             Graph.Add(node);
             return true;

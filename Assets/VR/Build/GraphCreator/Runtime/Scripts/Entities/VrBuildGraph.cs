@@ -15,6 +15,8 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         public List<VrBuildGraphConnection> connections;
 
         private Dictionary<string, VrBuildGraphNode> nodeDictionary;
+
+        public GameObject self;
         
         private VrBuildGraph()
         {
@@ -22,8 +24,9 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
             connections = new List<VrBuildGraphConnection>();
         }
 
-        public void Init()
+        public void Init(GameObject gameObject)
         {
+            self = gameObject;
             nodeDictionary = new Dictionary<string, VrBuildGraphNode>();
             foreach (var node in nodes)
             {

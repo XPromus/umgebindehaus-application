@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
 {
+    /// <summary>
+    /// Node structure for the runtime of the program.
+    /// </summary>
     [Serializable]
     public class VrBuildGraphNode
     {
@@ -16,7 +19,8 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         public Rect Position { get; set; }
         
         public string ID => mGuid;
-        public GameObject TargetObject => mTargetObject;
+        
+        //public GameObject TargetObject => mTargetObject;
 
         public VrBuildGraphNode()
         {

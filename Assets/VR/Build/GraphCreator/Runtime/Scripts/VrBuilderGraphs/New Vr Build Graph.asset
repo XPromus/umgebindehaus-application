@@ -14,14 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodes:
   - rid: 3536060374229188679
-  - rid: 3536060374229188680
+  - rid: 3536060374229188682
+  - rid: 3536060374229188683
   connections:
   - inputPort:
-      nodeId: a8e27e65-43a8-4784-8a8f-860ce98c0dc6
+      nodeId: 8bf1057d-f196-4ae5-8046-04f72eec5d53
       portIndex: 1
     outputPort:
       nodeId: 77db9b53-f7a4-4e01-bb36-50d65f68f7c6
       portIndex: 0
+  - inputPort:
+      nodeId: 32f7e172-1dbc-4baa-8df0-2a6cc8543098
+      portIndex: 1
+    outputPort:
+      nodeId: 77db9b53-f7a4-4e01-bb36-50d65f68f7c6
+      portIndex: 0
+  - inputPort:
+      nodeId: f3802af5-c2fa-40ee-8cf5-c07b982ca073
+      portIndex: 1
+    outputPort:
+      nodeId: 32f7e172-1dbc-4baa-8df0-2a6cc8543098
+      portIndex: 0
+  self: {fileID: 0}
   references:
     version: 2
     RefIds:
@@ -30,10 +44,19 @@ MonoBehaviour:
       data:
         mGuid: 77db9b53-f7a4-4e01-bb36-50d65f68f7c6
         mTargetObject: {fileID: 0}
-    - rid: 3536060374229188680
+    - rid: 3536060374229188682
       type: {class: DebugLogNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
         asm: GraphCreator}
       data:
-        mGuid: a8e27e65-43a8-4784-8a8f-860ce98c0dc6
+        mGuid: 32f7e172-1dbc-4baa-8df0-2a6cc8543098
         mTargetObject: {fileID: 0}
-        debugMessage: Test
+        debugMessage: sdawdasd
+    - rid: 3536060374229188683
+      type: {class: ProgressNode, ns: VR.Build.GraphCreator.Runtime.Scripts.Types,
+        asm: GraphCreator}
+      data:
+        mGuid: f3802af5-c2fa-40ee-8cf5-c07b982ca073
+        mTargetObject: {fileID: 0}
+        Tooltip: es
+        TargetGameObjectLink: {fileID: 11400000, guid: cf08cd13618110666abc1cdebef82524,
+          type: 2}

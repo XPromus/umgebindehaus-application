@@ -10,6 +10,9 @@ using VR.Build.GraphCreator.Runtime.Scripts.Entities;
 
 namespace VR.Build.GraphCreator.Editor.Scripts
 {
+    /// <summary>
+    /// Node structure for the unity editor.
+    /// </summary>
     public class VrBuildGraphEditorNode : Node
     {
         public VrBuildGraphNode VrBuildGraphNode { get; private set; }
