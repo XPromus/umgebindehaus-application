@@ -1,8 +1,8 @@
-using UnityEngine;
 using VR.Build.GraphCreator.Runtime.Attributes;
 using VR.Build.GraphCreator.Runtime.Scripts.Entities;
+using VR.Build.GraphCreator.Runtime.Scripts.Utility;
 
-namespace VR.Build.GraphCreator.Runtime.Scripts.Types
+namespace VR.Build.GraphCreator.Runtime.Scripts.NodeTypes
 {
     [NodeInfo("Intermediate", "Intermediate")]
     public class ProgressNode : VrBuildGraphNode
@@ -14,7 +14,6 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Types
 
         public override string OnProcess(VrBuildGraph currentGraph)
         {
-            
             return base.OnProcess(currentGraph);
         }
     }

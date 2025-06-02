@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137e768deae94bffa25afad3e16fc930, type: 3}
+  m_Name: New Vr Build Graph
+  m_EditorClassIdentifier: 
+  nodes:
+  - rid: 3378570589895393352
+  - rid: 3378570589895393353
+  - rid: 3378570589895393354
+  connections:
+  - inputPort:
+      nodeId: a8e6374b-7fe5-49f7-85ad-73f2bad5194f
+      portIndex: 1
+    outputPort:
+      nodeId: 27ecee34-2348-49a9-b918-ce13c52acf88
+      portIndex: 0
+  - inputPort:
+      nodeId: d2b0acc4-6de0-4eca-8abf-3a04d0511889
+      portIndex: 1
+    outputPort:
+      nodeId: a8e6374b-7fe5-49f7-85ad-73f2bad5194f
+      portIndex: 0
+  self: {fileID: 0}
+  references:
+    version: 2
+    RefIds:
+    - rid: 3378570589895393352
+      type: {class: StartNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
+        asm: GraphCreator}
+      data:
+        mGuid: 27ecee34-2348-49a9-b918-ce13c52acf88
+        mTargetObject: {fileID: 0}
+    - rid: 3378570589895393353
+      type: {class: ProgressNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
+        asm: GraphCreator}
+      data:
+        mGuid: a8e6374b-7fe5-49f7-85ad-73f2bad5194f
+        mTargetObject: {fileID: 0}
+        Tooltip: Stuff
+        TargetGameObjectLink: {fileID: 11400000, guid: cf08cd13618110666abc1cdebef82524,
+          type: 2}
+    - rid: 3378570589895393354
+      type: {class: EndNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
+        asm: GraphCreator}
+      data:
+        mGuid: d2b0acc4-6de0-4eca-8abf-3a04d0511889
+        mTargetObject: {fileID: 0}

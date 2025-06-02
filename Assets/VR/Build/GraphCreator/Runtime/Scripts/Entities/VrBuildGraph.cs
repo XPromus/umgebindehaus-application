@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using VR.Build.GraphCreator.Runtime.Scripts.Types;
+using VR.Build.GraphCreator.Runtime.Scripts.NodeTypes;
 
 namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
 {

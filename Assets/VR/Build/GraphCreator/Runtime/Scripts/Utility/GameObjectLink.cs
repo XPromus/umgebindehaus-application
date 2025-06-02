@@ -1,7 +1,10 @@
 using UnityEngine;
 
-namespace VR.Build.GraphCreator.Runtime.Scripts
+namespace VR.Build.GraphCreator.Runtime.Scripts.Utility
 {
+    /// <summary>
+    /// Link asset for the graph, to be able to access objects in the scene.
+    /// </summary>
     [CreateAssetMenu(menuName = "Logic/Game Object Link")]
     public class GameObjectLink : ScriptableObject
     {

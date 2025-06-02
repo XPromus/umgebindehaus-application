@@ -2,7 +2,7 @@ using UnityEngine;
 using VR.Build.GraphCreator.Runtime.Attributes;
 using VR.Build.GraphCreator.Runtime.Scripts.Entities;
 
-namespace VR.Build.GraphCreator.Runtime.Scripts.Types
+namespace VR.Build.GraphCreator.Runtime.Scripts.NodeTypes
 {
     [NodeInfo("Start", "Start", false, true)]
     public class StartNode : VrBuildGraphNode
