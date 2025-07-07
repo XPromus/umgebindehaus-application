@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using VR.Build.GraphCreator.Runtime.Scripts.Entities;
 
@@ -25,11 +26,13 @@ namespace VR.Build.GraphCreator.Runtime.Scripts
 
         private void ProcessAndMoveToNextNode(VrBuildGraphNode startNode)
         {
-            var nextNodeId = startNode.OnProcess(graphAssetInstance);
-            if (!string.IsNullOrEmpty(nextNodeId))
+            var nextNodeIds = startNode.OnProcess(graphAssetInstance);
+            if (nextNodeIds.Length != 0)
             {
-                var node = graphAssetInstance.GetNode(nextNodeId);
-                ProcessAndMoveToNextNode(node);
+                var nodes = nextNodeIds.Select(nodeId => graphAssetInstance.GetNode(nodeId)).ToArray();
+                //var node = graphAssetInstance.GetNode(nextNodeId);
+                //ProcessAndMoveToNextNode(node);
+                //TODO: Check why I need this.
             }
         }
     }

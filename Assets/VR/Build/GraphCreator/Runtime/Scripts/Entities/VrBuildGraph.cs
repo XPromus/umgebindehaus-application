@@ -54,23 +54,22 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
             return null;
         }
 
-        public VrBuildGraphNode GetNodeFromOutput(string outputNodeId, int outputPortIndex)
+        public VrBuildGraphNode[] GetNodesFromOutputPort(string outputNodeId, int outputPortIndex)
         {
-            foreach (var connection in connections)
-            {
-                if
-                (
-                    connection.outputPort.nodeId == outputNodeId &&
-                    connection.outputPort.portIndex == outputPortIndex
-                )
-                {
-                    var nodeId = connection.inputPort.nodeId;
-                    var inputNode = nodeDictionary[nodeId];
-                    return inputNode;
-                }
-            }
+            return connections.Where
+            (
+                connection => connection.outputPort.nodeId == outputNodeId || 
+                connection.outputPort.portIndex == outputPortIndex
+            ).Select(connection => nodeDictionary[connection.inputPort.nodeId]).ToArray();
+        }
 
-            return null;
+        public VrBuildGraphNode[] GetNodesFromInputPort(string inputNodeId, int inputPortIndex)
+        {
+            return connections.Where
+            (
+                connection => connection.inputPort.nodeId == inputNodeId ||
+                connection.inputPort.portIndex == inputPortIndex
+            ).Select(connection => nodeDictionary[connection.outputPort.nodeId]).ToArray();
         }
     }
 }

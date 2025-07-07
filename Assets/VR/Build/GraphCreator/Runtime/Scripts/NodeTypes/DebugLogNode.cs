@@ -10,7 +10,7 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.NodeTypes
         [ExposeProperty()]
         public string debugMessage;
         
-        public override string OnProcess(VrBuildGraph currentGraph)
+        public override string[] OnProcess(VrBuildGraph currentGraph)
         {
             Debug.Log(debugMessage);
             return base.OnProcess(currentGraph);

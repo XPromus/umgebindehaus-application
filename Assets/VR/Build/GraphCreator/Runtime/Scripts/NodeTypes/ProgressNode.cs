@@ -12,7 +12,7 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.NodeTypes
         [ExposeProperty]
         public GameObjectLink TargetGameObjectLink;
 
-        public override string OnProcess(VrBuildGraph currentGraph)
+        public override string[] OnProcess(VrBuildGraph currentGraph)
         {
             return base.OnProcess(currentGraph);
         }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -31,11 +32,12 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         {
             Position = rect;
         }
-
-        public virtual string OnProcess(VrBuildGraph currentGraph)
+            
+        public virtual string[] OnProcess(VrBuildGraph currentGraph)
         {
-            var nextNodeInFlow = currentGraph.GetNodeFromOutput(mGuid, 0);
-            return nextNodeInFlow != null ? nextNodeInFlow.ID : string.Empty;
+            var nextNodesInFlow = currentGraph.GetNodesFromOutputPort(mGuid, 0);
+            if (nextNodesInFlow == null || nextNodesInFlow.Length == 0) return Array.Empty<string>();
+            return nextNodesInFlow.Select(node => node.ID).ToArray();
         }
         
     }

@@ -108,7 +108,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             (
                 Orientation.Horizontal, 
                 Direction.Input, 
-                Port.Capacity.Single,
+                Port.Capacity.Multi,
                 typeof(PortTypes.FlowPort)
             );
             inputPort.portName = "In";
@@ -123,7 +123,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             (
                 Orientation.Horizontal, 
                 Direction.Output, 
-                Port.Capacity.Single,
+                Port.Capacity.Multi,
                 typeof(PortTypes.FlowPort)
             );
             outputPort.portName = "Out";
