@@ -19,7 +19,7 @@ namespace VR.Build.GraphCreator.Runtime.Scripts
 
         private void ExecuteAsset()
         {
-            graphAssetInstance.Init(gameObject);
+            graphAssetInstance.Init();
             var startNode = graphAssetInstance.GetStartNode();
             ProcessAndMoveToNextNode(startNode);
         }

@@ -31,6 +31,7 @@ namespace VR.Build.GraphCreator.Runtime
         [SerializeField] private float ySpacing;
         
         private VrBuildGraph targetVrBuildGraphInstance;
+        private VrBuildGraph targetVrBuildGraphInstanceScript;
 
         /// <summary>
         /// Not intended for interaction
@@ -49,14 +50,16 @@ namespace VR.Build.GraphCreator.Runtime
         private void OnEnable()
         {
             targetVrBuildGraphInstance = Instantiate(targetVrBuildGraph);
+            targetVrBuildGraphInstance.Init();
             targetGameObjects = GetTargetGameObjects(targetVrBuildGraphInstance.nodes);
-            var startNode = targetVrBuildGraph.GetStartNode();
-            currentNodes = targetVrBuildGraph.GetNodesFromOutputPort(startNode.ID, 0).ToList();
+            var startNode = targetVrBuildGraphInstance.GetStartNode();
+            currentNodes = targetVrBuildGraphInstance.GetNodesFromOutputPort(startNode.ID, 0).ToList();
             
-            MoveGameObjectsToTargetPosition(targetGameObjects, targetInteractionPosition);
+            //MoveGameObjectsToTargetPosition(targetGameObjects, targetInteractionPosition);
             CopyGameObjects();
             PlaceGameObjectCopies();
             HideOriginalGameObjects();
+            ChangeNodeMaterialToGhost();
         }
         
         /*
@@ -83,9 +86,15 @@ namespace VR.Build.GraphCreator.Runtime
             foreach (var targetGameObject in targetGameObjects)
             {
                 var copy = Instantiate(targetGameObject.gameObject);
-                var component = copy.AddComponent<VrBuildComponent>();
-                component.ID = targetGameObject.GetComponent<VrBuildComponentOriginal>().ID;
                 
+                var copyVrBuildComponent = copy.AddComponent<VrBuildComponent>();
+                copyVrBuildComponent.ID = targetGameObject.GetComponent<VrBuildComponentOriginal>().ID;
+                
+                var copyRigidbody = copy.AddComponent<Rigidbody>();
+                copyRigidbody.useGravity = false;
+                copyRigidbody.isKinematic = true;
+                
+                Destroy(copy.GetComponent<VrBuildComponentOriginal>());
                 targetGameObjectsCopy.Add(copy);
             }
         }
@@ -110,6 +119,21 @@ namespace VR.Build.GraphCreator.Runtime
             foreach (var o in objectsToHide)
             {
                 o.GetComponent<VrBuildComponentOriginal>().Hide();
+            }
+        }
+
+        private void ChangeNodeMaterialToGhost()
+        {
+            foreach (var targetGameObject in targetGameObjects)
+            {
+                var vrBuildComponentOriginal = targetGameObject.GetComponent<VrBuildComponentOriginal>();
+                foreach (var vrBuildGraphNode in currentNodes)
+                {
+                    if (vrBuildComponentOriginal.ID.Equals(vrBuildGraphNode.ID))
+                    {
+                        targetGameObject.GetComponent<MeshRenderer>().material = vrBuildComponentOriginal.GhostMaterial;
+                    }
+                }
             }
         }
 
@@ -149,6 +173,7 @@ namespace VR.Build.GraphCreator.Runtime
                 var component = o.AddComponent<VrBuildComponentOriginal>();
                 component.ID = progressNode.ID;
                 component.GhostMaterial = guideMaterial;
+                component.CorrectGhostMaterial = correctGuideMaterial;
                 component.Manager = this;
                 returnList.Add(o);
             }

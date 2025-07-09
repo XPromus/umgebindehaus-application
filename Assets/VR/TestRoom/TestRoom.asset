@@ -13,98 +13,43 @@ MonoBehaviour:
   m_Name: TestRoom
   m_EditorClassIdentifier: 
   nodes:
-  - rid: 3378570975565578316
-  - rid: 3378570975565578317
-  - rid: 3378570975565578318
-  - rid: 3378570975565578319
-  - rid: 3378570975565578320
-  - rid: 3378570975565578321
+  - rid: 4131672446912430150
+  - rid: 4131672446912430151
+  - rid: 4131672446912430152
   connections:
   - inputPort:
-      nodeId: ac2e1013-2e91-41dc-859b-38faeb7594b5
+      nodeId: efb4ffd5-7404-4273-ba39-88555aaafb04
       portIndex: 1
     outputPort:
-      nodeId: 585185d6-4721-4cb6-b2e9-9174c84bb8cd
+      nodeId: 57c987b2-5d1c-4564-a1e9-5db70368cde0
       portIndex: 0
   - inputPort:
-      nodeId: 1d658525-898d-4401-9be0-bbee53bd61a3
+      nodeId: 6f1520b1-2586-4f2c-85e0-824bcb403c82
       portIndex: 1
     outputPort:
-      nodeId: ac2e1013-2e91-41dc-859b-38faeb7594b5
+      nodeId: efb4ffd5-7404-4273-ba39-88555aaafb04
       portIndex: 0
-  - inputPort:
-      nodeId: 0fa069fb-6b02-4e93-b619-5e4887b311b0
-      portIndex: 1
-    outputPort:
-      nodeId: ac2e1013-2e91-41dc-859b-38faeb7594b5
-      portIndex: 0
-  - inputPort:
-      nodeId: 37af01dc-66e0-4ec6-8e6e-a748a7c28ec1
-      portIndex: 1
-    outputPort:
-      nodeId: 1d658525-898d-4401-9be0-bbee53bd61a3
-      portIndex: 0
-  - inputPort:
-      nodeId: 37af01dc-66e0-4ec6-8e6e-a748a7c28ec1
-      portIndex: 1
-    outputPort:
-      nodeId: 0fa069fb-6b02-4e93-b619-5e4887b311b0
-      portIndex: 0
-  - inputPort:
-      nodeId: 89ea134a-99b1-426e-8c21-8290e1be2b79
-      portIndex: 1
-    outputPort:
-      nodeId: 37af01dc-66e0-4ec6-8e6e-a748a7c28ec1
-      portIndex: 0
-  self: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 3378570975565578316
+    - rid: 4131672446912430150
       type: {class: StartNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
         asm: GraphCreator}
       data:
-        mGuid: 585185d6-4721-4cb6-b2e9-9174c84bb8cd
+        mGuid: 57c987b2-5d1c-4564-a1e9-5db70368cde0
         mTargetObject: {fileID: 0}
-    - rid: 3378570975565578317
+    - rid: 4131672446912430151
       type: {class: ProgressNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
         asm: GraphCreator}
       data:
-        mGuid: ac2e1013-2e91-41dc-859b-38faeb7594b5
+        mGuid: efb4ffd5-7404-4273-ba39-88555aaafb04
         mTargetObject: {fileID: 0}
         Tooltip: 
         TargetGameObjectLink: {fileID: 11400000, guid: 6c7890c92501f8cd2bb1c4195edcf475,
           type: 2}
-    - rid: 3378570975565578318
-      type: {class: ProgressNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
-        asm: GraphCreator}
-      data:
-        mGuid: 1d658525-898d-4401-9be0-bbee53bd61a3
-        mTargetObject: {fileID: 0}
-        Tooltip: 
-        TargetGameObjectLink: {fileID: 11400000, guid: a8ac7a886ffa907f8806d8bdb146d258,
-          type: 2}
-    - rid: 3378570975565578319
-      type: {class: ProgressNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
-        asm: GraphCreator}
-      data:
-        mGuid: 0fa069fb-6b02-4e93-b619-5e4887b311b0
-        mTargetObject: {fileID: 0}
-        Tooltip: 
-        TargetGameObjectLink: {fileID: 11400000, guid: 8a7c243fde326e46481c7b45d70527d6,
-          type: 2}
-    - rid: 3378570975565578320
-      type: {class: ProgressNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
-        asm: GraphCreator}
-      data:
-        mGuid: 37af01dc-66e0-4ec6-8e6e-a748a7c28ec1
-        mTargetObject: {fileID: 0}
-        Tooltip: 
-        TargetGameObjectLink: {fileID: 11400000, guid: 017d7e032aa59b6edb31fc8486e4e50a,
-          type: 2}
-    - rid: 3378570975565578321
+    - rid: 4131672446912430152
       type: {class: EndNode, ns: VR.Build.GraphCreator.Runtime.Scripts.NodeTypes,
         asm: GraphCreator}
       data:
-        mGuid: 89ea134a-99b1-426e-8c21-8290e1be2b79
+        mGuid: 6f1520b1-2586-4f2c-85e0-824bcb403c82
         mTargetObject: {fileID: 0}

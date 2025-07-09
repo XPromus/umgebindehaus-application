@@ -21,19 +21,45 @@ namespace VR.Build.GraphCreator.Runtime
         }
 
         private bool isInObject = false;
+        private VrBuildComponentOriginal otherVrBuildComponentOriginal;
         private string otherObjectId;
-        
+
+        private void Start()
+        {
+            GetComponent<Collider>().isTrigger = true;
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            Debug.Log("Collision");
+        }
+
         private void OnTriggerEnter(Collider other)
         {
-            //TODO: If ID is correct change material to green
             isInObject = true;
-            var component = other.gameObject.GetComponent<VrBuildComponentOriginal>();
-            otherObjectId = component.ID;
             Debug.Log("Is in Object");
+            
+            if (other.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent))
+            {
+                otherVrBuildComponentOriginal = otherComponent;
+                otherObjectId = otherVrBuildComponentOriginal.ID;
+                if (otherObjectId.Equals(ID))
+                {
+                    otherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
+                }
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
+            if (otherVrBuildComponentOriginal)
+            {
+                if (otherVrBuildComponentOriginal.ID.Equals(ID))
+                {
+                    otherVrBuildComponentOriginal.ChangeGhostMaterialToDefault();
+                }
+            }
+            
             isInObject = false;
             Debug.Log("Is out of Object");
         }

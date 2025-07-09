@@ -14,22 +14,20 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         [SerializeField] 
         public List<VrBuildGraphConnection> connections;
 
-        private Dictionary<string, VrBuildGraphNode> nodeDictionary;
-
-        public GameObject self;
+        private readonly Dictionary<string, VrBuildGraphNode> nodeDictionary;
         
         private VrBuildGraph()
         {
             nodes = new List<VrBuildGraphNode>();
             connections = new List<VrBuildGraphConnection>();
-        }
-
-        public void Init(GameObject gameObject)
-        {
-            self = gameObject;
             nodeDictionary = new Dictionary<string, VrBuildGraphNode>();
+        }
+        
+        public void Init()
+        {
             foreach (var node in nodes)
             {
+                Debug.Log("New Node added: " + node.ID);
                 nodeDictionary.Add(node.ID, node);
             }
         }
@@ -58,8 +56,9 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         {
             return connections.Where
             (
-                connection => connection.outputPort.nodeId == outputNodeId || 
-                connection.outputPort.portIndex == outputPortIndex
+                connection => 
+                    connection.outputPort.nodeId.Equals(outputNodeId) && 
+                    connection.outputPort.portIndex == outputPortIndex
             ).Select(connection => nodeDictionary[connection.inputPort.nodeId]).ToArray();
         }
 
@@ -67,7 +66,7 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         {
             return connections.Where
             (
-                connection => connection.inputPort.nodeId == inputNodeId ||
+                connection => connection.inputPort.nodeId == inputNodeId &&
                 connection.inputPort.portIndex == inputPortIndex
             ).Select(connection => nodeDictionary[connection.outputPort.nodeId]).ToArray();
         }

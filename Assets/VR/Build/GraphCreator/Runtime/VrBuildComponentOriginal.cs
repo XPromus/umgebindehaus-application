@@ -33,12 +33,20 @@ namespace VR.Build.GraphCreator.Runtime
             get => ghostMaterial;
             set => ghostMaterial = value;
         }
+        
+        [SerializeField] private Material correctGhostMaterial;
+        public Material CorrectGhostMaterial
+        {
+            get => correctGhostMaterial;
+            set => correctGhostMaterial = value;
+        }
 
         private MeshRenderer componentRenderer;
         private Collider componentCollider;
 
         private void Awake()
         {
+            GetComponent<Collider>().isTrigger = true;
             componentRenderer = GetComponent<MeshRenderer>();
             componentCollider = GetComponent<Collider>();
             OriginalMaterial = componentRenderer.material;
@@ -62,6 +70,16 @@ namespace VR.Build.GraphCreator.Runtime
             componentRenderer.enabled = true;
             componentCollider.enabled = true;
             componentRenderer.material = OriginalMaterial;
+        }
+
+        public void ChangeGhostMaterialToCorrect()
+        {
+            componentRenderer.material = CorrectGhostMaterial;
+        }
+
+        public void ChangeGhostMaterialToDefault()
+        {
+            componentRenderer.material = GhostMaterial;
         }
     }
 }
