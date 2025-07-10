@@ -58,17 +58,14 @@ namespace VR.Build.GraphCreator.Runtime
             componentCollider.enabled = false;
         }
 
-        public void ShowGhost()
+        public void Show()
         {
             componentRenderer.enabled = true;
             componentCollider.enabled = true;
-            componentRenderer.material = GhostMaterial;
         }
-        
-        public void OnCopyPlaced()
+
+        public void ChangeMaterialToOriginal()
         {
-            componentRenderer.enabled = true;
-            componentCollider.enabled = true;
             componentRenderer.material = OriginalMaterial;
         }
 

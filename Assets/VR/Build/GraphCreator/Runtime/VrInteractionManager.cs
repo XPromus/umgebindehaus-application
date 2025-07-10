@@ -7,17 +7,6 @@ using VR.Build.GraphCreator.Runtime.Scripts.NodeTypes;
 
 namespace VR.Build.GraphCreator.Runtime
 {
-    /// <summary>
-    /// 
-    /// </summary>
-    
-    //Plan:
-    // TODO: Create copy of objects
-    // TODO: Place the copy for the user to use
-    // TODO: Hide all original objects except the first object
-    // TODO: Show the next objects in transparent as a guide
-    // TODO: When the user places an object correctly, the copy disappears and the original changes material to the original material
-    // TODO: After placing an object, check if new objects are available and show the new objects as transparent guides
     public class VrInteractionManager : MonoBehaviour
     {
         [SerializeField] private VrBuildGraph targetVrBuildGraph;
@@ -37,10 +26,14 @@ namespace VR.Build.GraphCreator.Runtime
         /// Not intended for interaction
         /// </summary>
         private List<GameObject> targetGameObjects = new();
+
+        private List<VrBuildComponentOriginal> targetGameObjectComponents = new();
         /// <summary>
         /// Intended for interaction with the user.
         /// </summary>
-        private List<GameObject> targetGameObjectsCopy = new();
+        private readonly List<GameObject> targetGameObjectsCopy = new();
+
+        private List<VrBuildComponent> targetGameObjectCopyComponents = new();
         
         /// <summary>
         /// List of the current nodes that can be edited by the user
@@ -61,25 +54,100 @@ namespace VR.Build.GraphCreator.Runtime
             HideOriginalGameObjects();
             ChangeNodeMaterialToGhost();
         }
-        
-        /*
-        private void ExecuteAsset()
-        {
-            targetVrBuildGraphInstance.Init(gameObject);
-            var startNode = targetVrBuildGraphInstance.GetStartNode();
-            ProcessAndMoveToNextNode(startNode);
-        }
 
-        private void ProcessAndMoveToNextNode(VrBuildGraphNode startNode)
+        private void Update()
         {
-            var nextNodeId = startNode.OnProcess(targetVrBuildGraphInstance);
-            if (!string.IsNullOrEmpty(nextNodeId))
+            if (Input.GetKeyDown(KeyCode.Return))
             {
-                var node = targetVrBuildGraphInstance.GetNode(nextNodeId);
-                ProcessAndMoveToNextNode(node);
+                OnPlacementCheck();
             }
         }
-        */
+
+        private void OnPlacementCheck()
+        {
+            //Debug.Log("Check if object is placed");
+            var currentComponentCopies = GetVrBuildComponentsFromNodes(currentNodes);
+            foreach (var vrBuildComponent in currentComponentCopies)
+            {
+                if (vrBuildComponent.IsInCorrectObject)
+                {
+                    OnObjectPlacedCorrectly(vrBuildComponent, vrBuildComponent.OtherVrBuildComponentOriginal);
+                    CheckIfNodesInLevelAreComplete();
+                }
+            }
+        }
+
+        private List<VrBuildComponent> GetVrBuildComponentsFromNodes(List<VrBuildGraphNode> nodes)
+        {
+            var components = new List<VrBuildComponent>();
+            foreach (var vrBuildGraphNode in nodes)
+            {
+                components.AddRange(targetGameObjectCopyComponents.Where(c => c.ID.Equals(vrBuildGraphNode.ID)));
+            }
+
+            return components;
+        }
+
+        private List<VrBuildComponentOriginal> GetVrBuildComponentOriginalsFromNodes(List<VrBuildGraphNode> nodes)
+        {
+            var components = new List<VrBuildComponentOriginal>();
+            foreach (var vrBuildGraphNode in nodes)
+            {
+                components.AddRange(targetGameObjectComponents.Where(c => c.ID.Equals(vrBuildGraphNode.ID)));
+            }
+
+            return components;
+        }
+
+        private void CheckIfNodesInLevelAreComplete()
+        {
+            if (!currentNodes.All(c => c.Finished)) return;
+            currentNodes = GetNewNodesFromCurrentNodes(currentNodes);
+            InitNewComponents();
+        }
+        
+        /// <summary>
+        /// Uses a list of nodes to get all following nodes. If multiple nodes converge on a single node, duplicates from the connections are removed.
+        /// </summary>
+        /// <param name="nodes">Nodes, who's output ports are used to find new nodes</param>
+        /// <returns>A new list of nodes</returns>
+        private List<VrBuildGraphNode> GetNewNodesFromCurrentNodes(List<VrBuildGraphNode> nodes)
+        {
+            var returnList = new List<VrBuildGraphNode>();
+            foreach (var vrBuildGraphNode in nodes)
+            {
+                var nodesFromOutputPort = targetVrBuildGraphInstance.GetNodesFromOutputPort(vrBuildGraphNode.ID, 0);
+                
+                foreach (var outputNode in nodesFromOutputPort)
+                {
+                    var isInList = false;
+                    foreach (var nodeInList in returnList)
+                    {
+                        if (nodeInList.ID.Equals(outputNode.ID))
+                        {
+                            isInList = true;
+                        }
+                    }
+                    
+                    if (!isInList)
+                    {
+                        returnList.Add(outputNode);
+                    }
+                }
+            }
+            
+            return returnList;
+        }
+        
+        private void InitNewComponents()
+        {
+            var newCurrentOriginalComponents = GetVrBuildComponentOriginalsFromNodes(currentNodes);
+            foreach (var newCurrentOriginalComponent in newCurrentOriginalComponents)
+            {
+                newCurrentOriginalComponent.Show();
+            }
+            ChangeNodeMaterialToGhost();
+        }
         
         private void CopyGameObjects()
         {
@@ -89,6 +157,7 @@ namespace VR.Build.GraphCreator.Runtime
                 
                 var copyVrBuildComponent = copy.AddComponent<VrBuildComponent>();
                 copyVrBuildComponent.ID = targetGameObject.GetComponent<VrBuildComponentOriginal>().ID;
+                targetGameObjectCopyComponents.Add(copyVrBuildComponent);
                 
                 var copyRigidbody = copy.AddComponent<Rigidbody>();
                 copyRigidbody.useGravity = false;
@@ -109,7 +178,6 @@ namespace VR.Build.GraphCreator.Runtime
 
         private void HideOriginalGameObjects()
         {
-            //TODO: Remove first object in the graph from the hide list.
             var objectsToHide = targetGameObjects.Where(o =>
             {
                 var id = o.GetComponent<VrBuildComponentOriginal>().ID;
@@ -137,29 +205,17 @@ namespace VR.Build.GraphCreator.Runtime
             }
         }
 
-        private void InteractionLoop()
+        private void OnObjectPlacedCorrectly(VrBuildComponent copy, VrBuildComponentOriginal original)
         {
-            throw new NotImplementedException();
-        }
-
-        private void TriggerObjectPlaced()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnObjectPlacedCorrectly()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnObjectPlacedFalse()
-        {
-            throw new NotImplementedException();
-        }
-
-        private void OnEndReached()
-        {
-            throw new NotImplementedException();
+            copy.gameObject.SetActive(false);
+            original.ChangeMaterialToOriginal();
+            foreach (var vrBuildGraphNode in currentNodes)
+            {
+                if (vrBuildGraphNode.ID.Equals(original.ID))
+                {
+                    vrBuildGraphNode.Finished = true;
+                }
+            }
         }
         
         private List<GameObject> GetTargetGameObjects(List<VrBuildGraphNode> nodes)
@@ -175,6 +231,7 @@ namespace VR.Build.GraphCreator.Runtime
                 component.GhostMaterial = guideMaterial;
                 component.CorrectGhostMaterial = correctGuideMaterial;
                 component.Manager = this;
+                targetGameObjectComponents.Add(component);
                 returnList.Add(o);
             }
 
@@ -201,26 +258,5 @@ namespace VR.Build.GraphCreator.Runtime
                 }
             }
         }
-        
-        /*
-        private Vector3 GetCenterOfMultipleObjects(List<GameObject> objects)
-        {
-            var bounds = new Bounds(transform.position, Vector3.zero);
-            foreach (var o in objects)
-            {
-                var rendererComponent = o.GetComponent<Renderer>();
-                bounds.Encapsulate(rendererComponent.bounds);
-            }
-
-            return bounds.center;
-        }
-        */
-        
-        public void Step(string id)
-        {
-            
-            throw new NotImplementedException();
-        }
-        
     }
 }

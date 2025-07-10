@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
@@ -20,6 +19,7 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         public Rect Position { get; set; }
         
         public string ID => mGuid;
+        public bool Finished;
         
         //public GameObject TargetObject => mTargetObject;
 

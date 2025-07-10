@@ -20,8 +20,11 @@ namespace VR.Build.GraphCreator.Runtime
             set => manager = value;
         }
 
-        private bool isInObject = false;
-        private VrBuildComponentOriginal otherVrBuildComponentOriginal;
+        private bool isInObject;
+        public bool IsInCorrectObject;
+
+        public VrBuildComponentOriginal OtherVrBuildComponentOriginal { get; private set; }
+
         private string otherObjectId;
 
         private void Start()
@@ -29,47 +32,40 @@ namespace VR.Build.GraphCreator.Runtime
             GetComponent<Collider>().isTrigger = true;
         }
 
-        private void OnCollisionEnter(Collision other)
-        {
-            Debug.Log("Collision");
-        }
-
         private void OnTriggerEnter(Collider other)
         {
             isInObject = true;
-            Debug.Log("Is in Object");
+            Debug.Log(ID + ": Is in Object");
             
             if (other.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent))
             {
-                otherVrBuildComponentOriginal = otherComponent;
-                otherObjectId = otherVrBuildComponentOriginal.ID;
+                OtherVrBuildComponentOriginal = otherComponent;
+                otherObjectId = OtherVrBuildComponentOriginal.ID;
                 if (otherObjectId.Equals(ID))
                 {
-                    otherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
+                    IsInCorrectObject = true;
+                    OtherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
+                }
+                else
+                {
+                    IsInCorrectObject = false;
                 }
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            if (otherVrBuildComponentOriginal)
+            if (OtherVrBuildComponentOriginal)
             {
-                if (otherVrBuildComponentOriginal.ID.Equals(ID))
+                if (OtherVrBuildComponentOriginal.ID.Equals(ID))
                 {
-                    otherVrBuildComponentOriginal.ChangeGhostMaterialToDefault();
+                    OtherVrBuildComponentOriginal.ChangeGhostMaterialToDefault();
+                    IsInCorrectObject = false;
                 }
             }
             
             isInObject = false;
             Debug.Log("Is out of Object");
-        }
-
-        private void OnReleased()
-        {
-            if (isInObject && id.Equals(otherObjectId))
-            {
-                Manager.Step(id);
-            }
         }
     }
 }
