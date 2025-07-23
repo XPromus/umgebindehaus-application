@@ -75,17 +75,11 @@ namespace VR.Build.GraphCreator.Runtime
         {
             //TODO: Error when checking and object is in two objects at the same time
             //TODO: Fix if multiple are placed correctly (will not happen IRL but check still)
-            var onPlacedCorrectly = false;
             var currentComponentCopies = GetVrBuildComponentsFromNodes(currentNodes);
             foreach (var vrBuildComponent in currentComponentCopies)
             {
-                if (!vrBuildComponent.IsInCorrectObject) continue;
-                onPlacedCorrectly = true;
+                if (!vrBuildComponent.isInCorrectObject) continue;
                 OnObjectPlacedCorrectly(vrBuildComponent, vrBuildComponent.OtherVrBuildComponentOriginal);
-            }
-
-            if (onPlacedCorrectly)
-            {
                 CheckIfNodesInLevelAreComplete();
             }
         }

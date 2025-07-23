@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Object = System.Object;
 
 namespace VR.Build.GraphCreator.Runtime
 {
@@ -21,79 +23,66 @@ namespace VR.Build.GraphCreator.Runtime
             set => manager = value;
         }
 
-        private bool isInObject;
-        public bool IsInCorrectObject;
+        public bool isInCorrectObject;
 
         public VrBuildComponentOriginal OtherVrBuildComponentOriginal { get; private set; }
 
         private string otherObjectId;
-        private List<Collider> triggeredObjects = new List<Collider>();
+        private readonly List<Collider> triggeredObjects = new();
 
         private void Start()
         {
             GetComponent<Collider>().isTrigger = true;
         }
-
-        private void Update()
-        {
-            foreach (var triggeredObject in triggeredObjects)
-            {
-                if (!triggeredObject.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent)) continue;
-                
-                OtherVrBuildComponentOriginal = otherComponent;
-                otherObjectId = OtherVrBuildComponentOriginal.ID;
-                if (otherObjectId.Equals(ID))
-                {
-                    IsInCorrectObject = true;
-                    OtherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
-                }
-                else
-                {
-                    IsInCorrectObject = false;
-                }
-            }
-        }
-
+        
         private void OnTriggerEnter(Collider other)
         {
-            triggeredObjects.Add(other);
-            
-            isInObject = true;
-            Debug.Log(ID + ": Is in Object");
-            
-            /*
-            if (other.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent))
+            if (!triggeredObjects.Contains(other))
             {
-                OtherVrBuildComponentOriginal = otherComponent;
-                otherObjectId = OtherVrBuildComponentOriginal.ID;
-                if (otherObjectId.Equals(ID))
-                {
-                    IsInCorrectObject = true;
-                    OtherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
-                }
-                else
-                {
-                    IsInCorrectObject = false;
-                }
+                triggeredObjects.Add(other);
             }
-            */
+            
+            CheckCollisionObjects();
         }
 
         private void OnTriggerExit(Collider other)
         {
-            triggeredObjects.Remove(other);
+            if (triggeredObjects.Contains(other))
+            {
+                triggeredObjects.Remove(other);
+            }
+            
+            CheckCollisionObjects();
             
             if (OtherVrBuildComponentOriginal)
             {
                 if (OtherVrBuildComponentOriginal.ID.Equals(ID))
                 {
                     OtherVrBuildComponentOriginal.ChangeGhostMaterialToDefault();
-                    IsInCorrectObject = false;
+                    isInCorrectObject = false;
                 }
             }
-            
-            isInObject = false;
-            Debug.Log("Is out of Object");
+        }
+
+        private void CheckCollisionObjects()
+        {
+            foreach (var triggeredObject in triggeredObjects)
+            {
+                if (!triggeredObject.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent)) continue;
+                if (!otherComponent.ID.Equals(ID)) continue;
+                
+                OtherVrBuildComponentOriginal = otherComponent;
+                otherObjectId = OtherVrBuildComponentOriginal.ID;
+                if (otherObjectId.Equals(ID))
+                {
+                    isInCorrectObject = true;
+                    OtherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
+                }
+                else
+                {
+                    isInCorrectObject = false;
+                }
+            }
         }
     }
 }
