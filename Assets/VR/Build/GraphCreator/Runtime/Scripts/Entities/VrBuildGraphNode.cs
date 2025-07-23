@@ -14,9 +14,13 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         private string mGuid;
         [SerializeField]
         private GameObject mTargetObject;
+
+        public string TypeName;
         
-        public string TypeName { get; set; }
-        public Rect Position { get; set; }
+        public float PositionX;
+        public float PositionY;
+        public float PositionW;
+        public float PositionH;
         
         public string ID => mGuid;
         public bool Finished;
@@ -30,7 +34,10 @@ namespace VR.Build.GraphCreator.Runtime.Scripts.Entities
         
         public void SetPosition(Rect rect)
         {
-            Position = rect;
+            PositionX = rect.x;
+            PositionY = rect.y;
+            PositionW = rect.width;
+            PositionH = rect.height;
         }
             
         public virtual string[] OnProcess(VrBuildGraph currentGraph)

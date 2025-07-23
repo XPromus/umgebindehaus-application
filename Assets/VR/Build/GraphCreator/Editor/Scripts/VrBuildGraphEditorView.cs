@@ -50,6 +50,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
             this.AddManipulator(new ClickSelector());
+            this.AddManipulator(new ContentZoomer());
             
             DrawNode();
             DrawConnections();
@@ -201,7 +202,7 @@ namespace VR.Build.GraphCreator.Editor.Scripts
         {
             node.TypeName = node.GetType().AssemblyQualifiedName;
             var editorNode = new VrBuildGraphEditorNode(node, serializedObject);
-            editorNode.SetPosition(node.Position);
+            editorNode.SetPosition(new Rect(x: node.PositionX, y: node.PositionY, width: node.PositionW, height: node.PositionH));
             GraphCreatorNodes.Add(editorNode);
             NodeDictionary.Add(node.ID, editorNode);
             
