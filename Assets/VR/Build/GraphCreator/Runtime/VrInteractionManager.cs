@@ -9,15 +9,20 @@ namespace VR.Build.GraphCreator.Runtime
 {
     public class VrInteractionManager : MonoBehaviour
     {
+        [Header("Targets")]
         [SerializeField] private VrBuildGraph targetVrBuildGraph;
         [SerializeField] private Transform targetInteractionPosition;
 
+        [Header("Materials")]
+        [SerializeField] private Material inactiveMaterial;
         [SerializeField] private Material guideMaterial;
         [SerializeField] private Material correctGuideMaterial;
         
+        [Header("Placement Options")]
         [SerializeField] private int maxObjectsInRow;
         [SerializeField] private float xSpacing;
         [SerializeField] private float ySpacing;
+        [SerializeField] private bool alignOnXAxis;
         
         private VrBuildGraph targetVrBuildGraphInstance;
         private VrBuildGraph targetVrBuildGraphInstanceScript;
@@ -39,6 +44,10 @@ namespace VR.Build.GraphCreator.Runtime
         /// List of the current nodes that can be edited by the user
         /// </summary>
         private List<VrBuildGraphNode> currentNodes = new();
+        private List<VrBuildComponent> currentComponents = new();
+        private List<VrBuildComponentOriginal> currentOriginalComponents = new();
+        private List<GameObject> currentOriginalGameObjects = new();
+        private List<GameObject> currentCopyGameObjects = new();
         
         private void OnEnable()
         {
@@ -49,6 +58,7 @@ namespace VR.Build.GraphCreator.Runtime
             currentNodes = targetVrBuildGraphInstance.GetNodesFromOutputPort(startNode.ID, 0).ToList();
             
             //MoveGameObjectsToTargetPosition(targetGameObjects, targetInteractionPosition);
+            
             CopyGameObjects();
             PlaceGameObjectCopies();
             HideOriginalGameObjects();
@@ -65,15 +75,20 @@ namespace VR.Build.GraphCreator.Runtime
 
         private void OnPlacementCheck()
         {
-            //Debug.Log("Check if object is placed");
+            //TODO: Error when checking and object is in two objects at the same time
+            //TODO: Fix if multiple are placed correctly (will not happen IRL but check still)
+            var onPlacedCorrectly = false;
             var currentComponentCopies = GetVrBuildComponentsFromNodes(currentNodes);
             foreach (var vrBuildComponent in currentComponentCopies)
             {
-                if (vrBuildComponent.IsInCorrectObject)
-                {
-                    OnObjectPlacedCorrectly(vrBuildComponent, vrBuildComponent.OtherVrBuildComponentOriginal);
-                    CheckIfNodesInLevelAreComplete();
-                }
+                if (!vrBuildComponent.IsInCorrectObject) continue;
+                onPlacedCorrectly = true;
+                OnObjectPlacedCorrectly(vrBuildComponent, vrBuildComponent.OtherVrBuildComponentOriginal);
+            }
+
+            if (onPlacedCorrectly)
+            {
+                CheckIfNodesInLevelAreComplete();
             }
         }
 
@@ -170,10 +185,39 @@ namespace VR.Build.GraphCreator.Runtime
 
         private void PlaceGameObjectCopies()
         {
+            var currentPosition = targetInteractionPosition.position;
+            for (var i = 0; i < targetGameObjectsCopy.Count; i++)
+            {
+                var currentObject = targetGameObjectsCopy[i];
+                var objectBounds = currentObject.GetComponent<MeshRenderer>().bounds;
+
+                var targetPosition = new Vector3
+                (
+                    x: currentPosition.x + (xSpacing / 2) + objectBounds.extents.x,
+                    y: currentPosition.y,
+                    z: currentPosition.z
+                );
+                
+                currentObject.transform.position = targetPosition;
+                currentPosition = targetPosition + new Vector3((xSpacing / 2) + objectBounds.extents.x, 0f, 0f);
+            }
+            /*
             foreach (var o in targetGameObjectsCopy)
             {
                 o.transform.Translate(new Vector3(xSpacing, ySpacing, 0f));
             }
+            */
+        }
+
+        private Vector3 GetVectorForPlacement(int mul)
+        {
+            return alignOnXAxis switch
+            {
+                true => new Vector3(targetInteractionPosition.position.x + xSpacing * mul, 0f,
+                    targetInteractionPosition.position.z + ySpacing),
+                false => new Vector3(targetInteractionPosition.position.x + xSpacing, 0f,
+                    targetInteractionPosition.position.z + ySpacing * mul)
+            };
         }
 
         private void HideOriginalGameObjects()

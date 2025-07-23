@@ -19,12 +19,19 @@ namespace VR.Build.GraphCreator.Runtime
             get => manager;
             set => manager = value;
         }
-
+        
         [SerializeField] private Material originalMaterial;
         public Material OriginalMaterial
         {
             get => originalMaterial;
             set => originalMaterial = value;
+        }
+
+        [SerializeField] private Material inactiveMaterial;
+        public Material InactiveMaterial
+        {
+            get => inactiveMaterial;
+            set => inactiveMaterial = value;
         }
         
         [SerializeField] private Material ghostMaterial;
@@ -62,6 +69,11 @@ namespace VR.Build.GraphCreator.Runtime
         {
             componentRenderer.enabled = true;
             componentCollider.enabled = true;
+        }
+
+        public void ChangeMaterialToInactive()
+        {
+            componentRenderer.material = InactiveMaterial;
         }
 
         public void ChangeMaterialToOriginal()

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VR.Build.GraphCreator.Runtime
@@ -26,19 +27,19 @@ namespace VR.Build.GraphCreator.Runtime
         public VrBuildComponentOriginal OtherVrBuildComponentOriginal { get; private set; }
 
         private string otherObjectId;
+        private List<Collider> triggeredObjects = new List<Collider>();
 
         private void Start()
         {
             GetComponent<Collider>().isTrigger = true;
         }
 
-        private void OnTriggerEnter(Collider other)
+        private void Update()
         {
-            isInObject = true;
-            Debug.Log(ID + ": Is in Object");
-            
-            if (other.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent))
+            foreach (var triggeredObject in triggeredObjects)
             {
+                if (!triggeredObject.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent)) continue;
+                
                 OtherVrBuildComponentOriginal = otherComponent;
                 otherObjectId = OtherVrBuildComponentOriginal.ID;
                 if (otherObjectId.Equals(ID))
@@ -53,8 +54,35 @@ namespace VR.Build.GraphCreator.Runtime
             }
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            triggeredObjects.Add(other);
+            
+            isInObject = true;
+            Debug.Log(ID + ": Is in Object");
+            
+            /*
+            if (other.TryGetComponent<VrBuildComponentOriginal>(out var otherComponent))
+            {
+                OtherVrBuildComponentOriginal = otherComponent;
+                otherObjectId = OtherVrBuildComponentOriginal.ID;
+                if (otherObjectId.Equals(ID))
+                {
+                    IsInCorrectObject = true;
+                    OtherVrBuildComponentOriginal.ChangeGhostMaterialToCorrect();
+                }
+                else
+                {
+                    IsInCorrectObject = false;
+                }
+            }
+            */
+        }
+
         private void OnTriggerExit(Collider other)
         {
+            triggeredObjects.Remove(other);
+            
             if (OtherVrBuildComponentOriginal)
             {
                 if (OtherVrBuildComponentOriginal.ID.Equals(ID))
